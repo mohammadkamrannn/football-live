@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/vendor/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <title>لیگ برتر فوتبال ایران | محمد کامران</title>
+</head>
+<body>
+    <div class="container py-3">
+        <div class="row">
+            <div class="col col-lg-6">
+                <form class="row gx-3 gy-2 align-items-center">
+                    <div class="col-6">
+                        <select class="form-select" id="leageNameSelect" onchange="getRank()">
+                          <option value="1" id="iranLeageName">لیگ برتر ایران</option>
+                          <option value="2" id="spainLeageName">لالیگا اسپانیا</option>
+                          <option value="3" id="englandLeageName">لیگ برتر انگلیس</option>
+                          <option value="2" id="germanLeageName">بوندسلیگا آلمان</option>
+                          <option value="3" id="italyLeageName">سری آ ایتالیا</option>
+                          <option value="4" id="francLeageName">لیگ یک فرانسه</option>
+                        </select>
+                      </div>
+                      <table class="table table-striped">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">بازی</th>
+                                <th scope="col">برد</th>
+                                <th scope="col">مساوی</th>
+                                <th scope="col">باخت</th>
+                                <th scope="col">گل زده</th>
+                                <th scope="col">گل خورده</th>
+                                <th scope="col">تفاضل</th>
+                                <th scope="col">امتیاز</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leageRank"></tbody>
+                    </table>
+                </form>
+                <canvas id="myChart" height="120"></canvas>
+            </div>
+            <div class="col col-lg-6">
+                <div class="h6">
+                    <div id="leageFlag"></div>
+                    <div id="teamResults"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="./js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
