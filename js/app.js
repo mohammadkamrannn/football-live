@@ -5,6 +5,8 @@ var leageName = "";
 var teamResults = "";
 var teamResult = document.getElementById('teamResults');
 // var dateTimes = 1649088000000;
+var monthName = ["دی","بهمن","اسفند","فرودین","ادیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر"];
+var dayName = [11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,1,2,3,4,5,6,7,8,9,10];
 
 function loadJSON(method, url, callback) {
     var xhr = new XMLHttpRequest;
@@ -53,6 +55,8 @@ function getRank() {
     
     
 loadJSON('GET', `${baseUrl}${leageName}/?_=1645601509026&sf=1`, function(req) {
+
+    
     
     for(var i = 0; i < req.response.standings.rows.length; i++) {
         let nameTeam = req.response.standings.rows[i];
@@ -129,7 +133,6 @@ loadJSON('GET', `${baseUrl}${leageName}/?_=1645601509026&sf=1`, function(req) {
         } else if (nameTeam.team == "Alaves") {
             nameTeam.team = "آلاوز";
         }
-        
         leageRank +=
             `<tbody>
                 <tr>
@@ -167,21 +170,21 @@ loadJSON('GET', `${baseUrl}${leageName}/?_=1645601509026&sf=1`, function(req) {
             </div>`;
     };
     for(var j = 0; j < (req.response.standings.rows.length / 2); j++) {
-        // var dateTimes = String(req.response.results[j].dt);
-        // var times = dateTimes + '000';
-        // var dayName = ["دی","بهمن","اسفند","فرودین","ادیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر"];
-        // var timeGame = new Date(Number(times));
-        // console.log(timeGame);
+        var dateTimes = String(req.response.results[j].dt);
+        var times = dateTimes + '000';
+        var timeGame = new Date(Number(times));
 
         teamResults += 
         `<div class="d-flex justify-content-center align-items-center border-bottom mb-2 p-2 text-dark text-center h5">
             <div class="logo-team-result d-flex flex-column align-items-center mx-4 flex-basis-35">
             <img src="${flagTeam}${req.response.results[j].s1Id}.png"><span class="mt-2">${req.response.results[j].s1}</span>
             </div>
-            
+            <div class="">
             <div class="d-flex justify-content-center text-light">
                 <div class="bg-warning p-3">${req.response.results[j].sc1}</div>
                 <div class="bg-danger p-3">${req.response.results[j].sc2}</div>
+            </div>
+            <div class="bg-dark text-light day-result">${dayName[timeGame.getDate()]} ${monthName[timeGame.getMonth()]}</div>
             </div>
             
 
@@ -191,11 +194,12 @@ loadJSON('GET', `${baseUrl}${leageName}/?_=1645601509026&sf=1`, function(req) {
             
         </div>
         `;
-        
-        
     }
     document.getElementById('leageRank').innerHTML = leageRank;
     teamResult.innerHTML = teamResults;
-
 });
 }
+var toDay = new Date();
+console.log(toDay.getDate());
+console.log(toDay.getMonth());
+console.log(toDay.getFullYear());
